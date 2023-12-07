@@ -7,10 +7,11 @@ function create()
         $name = htmlspecialchars($_POST["name"]);
         $email = htmlspecialchars($_POST["email"]);
         $nik = htmlspecialchars($_POST["nik"]);
+        $hashedPassword = htmlspecialchars(password_hash($_POST["password"], PASSWORD_DEFAULT));
 
         $conn = mysqli_connect("localhost", "root", "", "belajarphp");
 
-        $result = mysqli_query($conn, "INSERT INTO employees VALUES('', '$name', '$email', '$nik', '')");
+        $result = mysqli_query($conn, "INSERT INTO employees VALUES('', '$name', '$email', '$nik', '', '$hashedPassword')");
         if (mysqli_affected_rows($conn) && $result) {
             echo "
                     <script>
