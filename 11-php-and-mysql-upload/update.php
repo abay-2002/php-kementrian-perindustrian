@@ -9,6 +9,7 @@
 
     if(isset($_POST['submit'])){
         update();
+        var_dump($_FILES);
     }
 ?>
 <!DOCTYPE html>

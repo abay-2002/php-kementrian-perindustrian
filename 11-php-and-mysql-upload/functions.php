@@ -42,12 +42,12 @@ function update()
         $picture = uploadgambar();
 
         // Cek apakah user mengubah picture?
-        if(!$picture){
-            // User tidak mengubah picture.
-            $picture = $oldpicture; 
-        } else {
+        if($picture){
             // User mengubah picture.
             unlink("./img/$oldpicture");
+        } else {
+            // User tidak mengubah picture.
+            $picture = $oldpicture; 
         }
 
         mysqli_query($conn, "UPDATE employees SET name ='$name', email = '$email', nik = '$nik', picture = '$picture' WHERE id = $id");
@@ -72,7 +72,7 @@ function uploadGambar(){
         
         // 3. Simpan file.
         $tmpname = $_FILES['picture']['tmp_name'];
-        move_uploaded_file($tmpname, './img/' . $filename);
+        move_uploaded_file($tmpname, "./img/$filename");
 
         return $filename;
     } else {
